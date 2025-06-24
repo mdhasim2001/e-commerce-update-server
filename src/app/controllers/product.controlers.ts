@@ -47,10 +47,17 @@ productRoute.patch("/:productId", async (req: Request, res: Response) => {
       updateProductBody,
       { new: true }
     );
-    res.status(201).send({
-      success: true,
-      message: "Product update successfully",
-      updateProductData,
+    if (updateProductData) {
+      res.status(201).send({
+        success: true,
+        message: "Product update successfully",
+        updateProductData,
+      });
+    }
+
+    res.status(403).send({
+      success: false,
+      messages: `${updateProductId} not available`,
     });
   } catch (error) {
     res.status(404).send({

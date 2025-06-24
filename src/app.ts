@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import { productRoute } from "./app/controllers/product.controlers";
+import { userRoutes } from "./app/controllers/user.controllers";
 
 export const app: Application = express();
 
@@ -9,6 +10,7 @@ app.use(express.json());
 
 // routes
 app.use("/products", productRoute);
+app.use("/users", userRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
   try {
